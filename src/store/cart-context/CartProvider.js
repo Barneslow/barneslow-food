@@ -18,7 +18,7 @@ const cartReducer = (state, action) => {
 
     const existingCartItem = state.items[existingCartItemIndex];
 
-    let udpatedItems;
+    let updatedItems;
 
     if (existingCartItem) {
       const updatedItem = {
@@ -26,14 +26,14 @@ const cartReducer = (state, action) => {
         amount: existingCartItem.amount + action.payload.amount,
       };
 
-      udpatedItems = [...state.items];
-      udpatedItems[existingCartItemIndex] = updatedItem;
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
     } else {
-      udpatedItems = state.items.concat(action.payload);
+      updatedItems = state.items.concat(action.payload);
     }
 
     return {
-      items: udpatedItems,
+      items: updatedItems,
       totalAmount: newTotalAmount,
     };
   }
@@ -58,6 +58,11 @@ const cartReducer = (state, action) => {
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
+
+    return {
+      items: updatedItems,
+      totalAmount: newTotalAmount,
+    };
   }
 
   if (action.type === "CLEAR") {
